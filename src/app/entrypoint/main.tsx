@@ -1,10 +1,10 @@
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
 import '../styles/index.css'
-import {MainPage} from '@/pages/main'
+import {GamePage} from '@/pages/game'
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <MainPage/>
+        <GamePage/>
     </StrictMode>,
 )

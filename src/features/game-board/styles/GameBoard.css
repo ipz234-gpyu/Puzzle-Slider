@@ -1,0 +1,12 @@
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: min(90vw, 400px);
+    margin: 0 auto;
+}
+
+.tile.empty {
+    background: transparent;
+    box-shadow: none;
+}

@@ -1,1 +1,1 @@
-export { GameBoard } from "./ui/GameBoard";
+export { useGameBoard } from "./model/usePuzzleGame"

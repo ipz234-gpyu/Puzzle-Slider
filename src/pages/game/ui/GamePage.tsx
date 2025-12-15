@@ -1,11 +1,11 @@
-import { GameBoard } from "@/widgets/PuzzleBoard";
+import { PuzzleBoard } from "@/widgets/puzzleBoard";
 import myImage from '@/img/3.png';
 
 export const GamePage = () => {
     return (
         <div>
             <h1>Ігровий екран</h1>
-            <GameBoard imageUrl={myImage} />
+            <PuzzleBoard imageUrl={myImage} />
         </div>
     );
 };

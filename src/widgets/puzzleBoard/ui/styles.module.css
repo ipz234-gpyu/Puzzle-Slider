@@ -1,0 +1,21 @@
+.gameBoard {
+    position: relative;
+    max-height: 30em;
+    margin: 0 auto;
+    background: #1f306c;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.tileWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+.noTransition {
+    transition: none !important;
+}

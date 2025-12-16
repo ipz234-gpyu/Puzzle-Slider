@@ -1,1 +1,2 @@
-export { useImageLoader } from "./useImageLoader.ts"
+export {useImageLoader} from "./useImageLoader"
+export {useTimer} from "./useTimer"

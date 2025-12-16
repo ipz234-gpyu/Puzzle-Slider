@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {Tile} from "@/entities/tile";
 import {usePuzzleBoard} from "@/features/puzzleBoard";
-import styles from "./styles.module.css";
 import {useImageLoader} from "@/shared/lib/hooks";
+import {Button} from "@/shared/ui/button";
+import styles from "./styles.module.css";
 
 interface GameBoardProps {
     imageUrl: string;
@@ -28,7 +29,14 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 2}) 
         <div>
             <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8}}>
                 <div>{isWon ? "You won!" : ""}</div>
-                <button type="button" onClick={handleShuffle}>Shuffle</button>
+                <Button
+                    variant="primary"
+                    size="md"
+                    onClick={handleShuffle}
+                    disabled={isShuffling}
+                >
+                    {isShuffling ? "Shuffling..." : "Shuffle"}
+                </Button>
             </div>
             <div
                 className={styles.gameBoard}

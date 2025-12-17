@@ -6,33 +6,37 @@ import {useTimer} from "@/shared/lib/hooks";
 import {usePuzzleBoard} from "@/features/puzzleBoard";
 
 import {Button} from "@/shared/ui/button";
-import {TimerDisplay} from "@/shared/ui/timer";
+import {Flex} from "@/shared/ui/flex";
 import {Tile} from "@/entities/tile";
+import {GameStats} from "@/entities/gameStats";
 
 interface GameBoardProps {
     imageUrl: string;
     gridSize?: number;
 }
 
-export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 2}) => {
-    const {tiles, moveTile, shuffle, isWon} = usePuzzleBoard(gridSize);
+export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4}) => {
+    const {tiles, moveTile, shuffle, isWon, moveCount} = usePuzzleBoard(gridSize);
     const {isLoaded, aspectRatio} = useImageLoader(imageUrl);
     const [isShuffling, setIsShuffling] = useState(false);
-    const { timer, start, stop, reset } = useTimer();
+    const {timer, start, stop, reset} = useTimer();
 
     useEffect(() => {
-        start();
-        if (isWon) {
+        if (isLoaded && !isWon)
+            start();
+    }, [isLoaded, isWon, start]);
+
+    useEffect(() => {
+        if (isWon)
             stop();
-        }
     }, [isWon, start, stop]);
 
     const handleShuffle = () => {
         setIsShuffling(true);
         reset();
         shuffle();
-        start();
         setTimeout(() => setIsShuffling(false), 50);
+        start();
     };
 
     if (!isLoaded) return <div className={styles.loader}>Loading...</div>;
@@ -41,26 +45,14 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 2}) 
 
     return (
         <div>
-            <div>{isWon ? "You won!" : ""}</div>
-            <div style={{display: "flex", justifyContent: "space-around", alignItems: "center", marginBottom: 8}}>
-                <div>
-                    <TimerDisplay timer={timer} />
-                </div>
-                <Button
-                    variant="primary"
-                    size="md"
-                    onClick={handleShuffle}
-                    disabled={isShuffling}
-                >
-                    {isShuffling ? "Shuffling..." : "Shuffle"}
-                </Button>
-            </div>
-            <div
-                className={styles.gameBoard}
-                style={{
-                    aspectRatio: `${aspectRatio}`,
-                }}
-            >
+            <GameStats
+                moveCount={moveCount}
+                timer={timer}
+            />
+            <div className={styles.gameBoard} style={{aspectRatio: `${aspectRatio}`,}}>
+                <img src={imageUrl}
+                     alt="Solved Puzzle"
+                     className={`${styles.overlayImage} ${isWon ? styles.visible : ''}`}/>
                 {tiles.map((tile) => (
                     <div
                         key={tile.id}
@@ -72,8 +64,9 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 2}) 
                         }}
                     >
                         <Tile
-                            key={tile.id}
-                            data={tile}
+                            id={tile.id}
+                            isEmpty={tile.isEmpty}
+                            isIdVisible={true}
                             gridSize={gridSize}
                             imageUrl={imageUrl}
                             onClick={moveTile}
@@ -81,6 +74,16 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 2}) 
                     </div>
                 ))}
             </div>
+            <Flex justify="center" align="center" style={{marginTop: "1rem"}}>
+                <Button
+                    variant="primary"
+                    size="md"
+                    onClick={handleShuffle}
+                    disabled={isShuffling}
+                >
+                    {isShuffling ? "Shuffling..." : "Shuffle"}
+                </Button>
+            </Flex>
         </div>
     );
 };

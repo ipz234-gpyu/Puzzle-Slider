@@ -1,18 +1,72 @@
 :root {
+    --rgb-primary: 79, 70, 229;
+    --color-primary-main: #4f46e5;
+    --color-primary-hover: #4338ca;
+    --color-primary-content: #ffffff;
+
+    /* Surface (Фони) */
+    --color-surface-base: #242424;       /* Глобальний фон */
+    --color-surface-card: #374151;       /* Картки, панелі */
+    --color-surface-card-hover: #1f2937; /* Інтерактивні елементи */
+    --color-surface-overlay: rgba(0, 0, 0, 0.7); /* Для модальних вікон */
+
+    /* Text (Типографіка) */
+    --color-text-main: rgba(255, 255, 255, 0.87);
+    --color-text-secondary: #d1d5db;     /* Трохи світліший за твій, кращий контраст */
+    --color-text-muted: #9ca3af;         /* Підказки, плейсхолдери */
+    --color-text-inverse: #111827;       /* Текст на світлих елементах */
+
+    /* Functional */
+    --color-success: #22c55e;            /* Зелений: перемога, успіх */
+    --color-warning: #f59e0b;            /* Жовтий: попередження */
+    --color-error: #ef4444;              /* Червоний: помилка, невірний хід */
+    --color-info: #3b82f6;               /* Синій: інформація */
+
+    /* Borders (Границі) */
+    --color-border-subtle: rgba(255, 255, 255, 0.1);
+    --color-border-focus: var(--color-primary-main);
+
+    --space-1: 0.25rem;  /* 4px */
+    --space-2: 0.5rem;   /* 8px */
+    --space-3: 0.75rem;  /* 12px */
+    --space-4: 1rem;     /* 16px */
+    --space-6: 1.5rem;   /* 24px */
+    --space-8: 2rem;     /* 32px */
+    --page-padding: var(--space-8);
+
+
+    --radius-sm: 0.25rem; /* 4px */
+    --radius-md: 0.5rem;  /* 8px - стандарт для кнопок */
+    --radius-lg: 0.75rem; /* 12px - для карток */
+    --radius-full: 9999px; /* Круглі кнопки */
+
+    /* ------------------------------
+       4. ТИПОГРАФІКА (TYPOGRAPHY)
+    ------------------------------ */
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-display: 3rem;
+
+    /* ------------------------------
+       5. ШАРИ (Z-INDEX)
+    ------------------------------ */
+    --z-modal: 1000;
+    --z-dropdown: 100;
+    --z-sticky: 10;
+
+    --transition-fast: 0.2s ease;
+
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
-
+    color-scheme: dark;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --page-padding: 3rem;
 }
 
 #root {
@@ -26,9 +80,7 @@ body {
     min-height: 100vh;
     justify-content: center;
     padding-inline: var(--page-padding);
-}
 
-h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
+    background-color: var(--color-surface-base);
+    color: var(--color-text-main);
 }

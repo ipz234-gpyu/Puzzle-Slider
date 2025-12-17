@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
-import type { Timer, TimerState } from '@/shared/ui/timer';
+import type { TimerState, Timer } from '@/shared/ui/timer';
 
 export const useTimer = (initialTime: number = 0) => {
     const [state, setState] = useState<TimerState>({
@@ -70,7 +70,7 @@ export const useTimer = (initialTime: number = 0) => {
         minutes: Math.floor((state.time % 3600) / 60),
         seconds: state.time % 60,
         totalSeconds: state.time,
-        isRunning: state.isRunning || (!!intervalRef.current && !state.isPaused),
+        isRunning: state.isRunning,
         isPaused: state.isPaused,
     }), [state]);
 

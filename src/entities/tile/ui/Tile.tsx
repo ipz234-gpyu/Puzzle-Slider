@@ -1,20 +1,21 @@
 import React, {useMemo} from "react";
 import styles from "./styles.module.css";
-import type {TileData} from "../index";
 
 interface TileProps {
-    data: TileData;
+    id: number;
     gridSize: number;
+    isEmpty?: boolean;
     imageUrl?: string;
     onClick?: (id: number) => void;
+    isIdVisible?: boolean;
 }
 
-export const Tile: React.FC<TileProps> = ({data, gridSize, imageUrl, onClick}) => {
+export const Tile: React.FC<TileProps> = ({id, isEmpty, gridSize, imageUrl, onClick, isIdVisible}) => {
     const backgroundStyles = useMemo(() => {
-        if (data.isEmpty || !imageUrl) return {};
+        if (isEmpty || !imageUrl) return {};
 
-        const correctRow = Math.floor((data.id - 1) / gridSize);
-        const correctCol = (data.id - 1) % gridSize;
+        const correctRow = Math.floor((id - 1) / gridSize);
+        const correctCol = (id - 1) % gridSize;
         const divisor = Math.max(1, gridSize - 1);
 
         return {
@@ -22,17 +23,17 @@ export const Tile: React.FC<TileProps> = ({data, gridSize, imageUrl, onClick}) =
             backgroundSize: `${gridSize * 100}% ${gridSize * 100}%`,
             backgroundPosition: `${(correctCol / divisor) * 100}% ${(correctRow / divisor) * 100}%`,
         };
-    }, [data.isEmpty, imageUrl, data.id, gridSize]);
+    }, [isEmpty, imageUrl, id, gridSize]);
 
     return (
         <button
             type="button"
-            className={`${styles.tile} ${data.isEmpty ? styles.empty : ""}`}
-            onClick={() => onClick?.(data.id)}
+            className={`${styles.tile} ${isEmpty ? styles.empty : ""}`}
+            onClick={() => onClick?.(id)}
             style={backgroundStyles}
-            disabled={data.isEmpty}
+            disabled={isEmpty}
         >
-            {!data.isEmpty && data.id}
+            {!isEmpty && isIdVisible && id}
         </button>
     );
 };

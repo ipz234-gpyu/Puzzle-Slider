@@ -73,6 +73,10 @@
     width: 100%;
 }
 
+#root {
+    width: 100%;
+}
+
 body {
     margin: 0;
     display: flex;

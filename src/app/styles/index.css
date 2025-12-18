@@ -5,38 +5,39 @@
     --color-primary-content: #ffffff;
 
     /* Surface (Фони) */
-    --color-surface-base: #242424;       /* Глобальний фон */
-    --color-surface-card: #374151;       /* Картки, панелі */
+    --color-surface-base: #242424; /* Глобальний фон */
+    --color-surface-card: #374151; /* Картки, панелі */
     --color-surface-card-hover: #1f2937; /* Інтерактивні елементи */
     --color-surface-overlay: rgba(0, 0, 0, 0.7); /* Для модальних вікон */
 
     /* Text (Типографіка) */
     --color-text-main: rgba(255, 255, 255, 0.87);
-    --color-text-secondary: #d1d5db;     /* Трохи світліший за твій, кращий контраст */
-    --color-text-muted: #9ca3af;         /* Підказки, плейсхолдери */
-    --color-text-inverse: #111827;       /* Текст на світлих елементах */
+    --color-text-secondary: #d1d5db; /* Трохи світліший за твій, кращий контраст */
+    --color-text-muted: #9ca3af; /* Підказки, плейсхолдери */
+    --color-text-inverse: #111827; /* Текст на світлих елементах */
 
     /* Functional */
-    --color-success: #22c55e;            /* Зелений: перемога, успіх */
-    --color-warning: #f59e0b;            /* Жовтий: попередження */
-    --color-error: #ef4444;              /* Червоний: помилка, невірний хід */
-    --color-info: #3b82f6;               /* Синій: інформація */
+    --color-success: #22c55e; /* Зелений: перемога, успіх */
+    --color-warning: #f59e0b; /* Жовтий: попередження */
+    --color-error: #ef4444; /* Червоний: помилка, невірний хід */
+    --color-info: #3b82f6; /* Синій: інформація */
 
     /* Borders (Границі) */
     --color-border-subtle: rgba(255, 255, 255, 0.1);
     --color-border-focus: var(--color-primary-main);
 
-    --space-1: 0.25rem;  /* 4px */
-    --space-2: 0.5rem;   /* 8px */
-    --space-3: 0.75rem;  /* 12px */
-    --space-4: 1rem;     /* 16px */
-    --space-6: 1.5rem;   /* 24px */
-    --space-8: 2rem;     /* 32px */
-    --page-padding: var(--space-8);
+    --space-1: 0.25rem; /* 4px */
+    --space-2: 0.5rem; /* 8px */
+    --space-3: 0.75rem; /* 12px */
+    --space-4: 1rem; /* 16px */
+    --space-5: 1.5rem; /* 24px */
+    --space-6: 2rem; /* 32px */
+    --space-7: 5rem;
+    --page-padding: var(--space-7);
 
 
     --radius-sm: 0.25rem; /* 4px */
-    --radius-md: 0.5rem;  /* 8px - стандарт для кнопок */
+    --radius-md: 0.5rem; /* 8px - стандарт для кнопок */
     --radius-lg: 0.75rem; /* 12px - для карток */
     --radius-full: 9999px; /* Круглі кнопки */
 
@@ -73,18 +74,17 @@
     width: 100%;
 }
 
-#root {
-    width: 100%;
-}
-
 body {
-    margin: 0;
     display: flex;
     min-width: 320px;
-    min-height: 100vh;
     justify-content: center;
     padding-inline: var(--page-padding);
 
     background-color: var(--color-surface-base);
     color: var(--color-text-main);
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
 }

@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 
 import {useImageLoader} from "@/shared/lib/hooks";
 import {useTimer} from "@/shared/lib/hooks";
-import {usePuzzleBoard} from "@/features/puzzleBoard";
+import {usePuzzleBoard, isGridSizeValid, MIN_GRID_SIZE, MAX_GRID_SIZE} from "@/features/puzzleBoard";
 
 import {Button} from "@/shared/ui/button";
 import {Flex} from "@/shared/ui/flex";
@@ -16,7 +16,9 @@ interface GameBoardProps {
 }
 
 export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4}) => {
-    const {tiles, moveTile, shuffle, isWon, moveCount} = usePuzzleBoard(gridSize);
+    const isValid = isGridSizeValid(gridSize);
+
+    const {tiles, moveTile, shuffle, isWon, moveCount} = usePuzzleBoard(isValid ? gridSize : 4);
     const {isLoaded, aspectRatio} = useImageLoader(imageUrl);
     const [isShuffling, setIsShuffling] = useState(false);
     const {timer, start, stop, reset} = useTimer();
@@ -38,6 +40,12 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4}) 
         setTimeout(() => setIsShuffling(false), 50);
         start();
     };
+
+    if (!isValid) return (
+        <div className={styles.error}>
+            Invalid grid size (must be {MIN_GRID_SIZE}-{MAX_GRID_SIZE})
+        </div>
+    );
 
     if (!isLoaded) return <div className={styles.loader}>Loading...</div>;
 

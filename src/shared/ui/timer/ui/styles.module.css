@@ -1,0 +1,16 @@
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+}
+
+.time {
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaaaaa;
+}
+
+.paused {
+    color: #5e5e5e;
+}

@@ -1,9 +1,13 @@
-
+import {Header} from "@/widgets/header";
+import {LevelList} from "@/widgets/levelList";
 
 export const MainPage = () => {
     return (
-        <div className="page start-page" >
-            <h1>Puzzle Slider</h1>
-        </div>
-    )
-}
+        <>
+            <Header
+                description="Choose your level and grid size to start playing:"
+            />
+            <LevelList />
+        </>
+    );
+};

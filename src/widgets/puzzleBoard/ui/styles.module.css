@@ -41,3 +41,17 @@
     opacity: 1;
     pointer-events: auto;
 }
+
+.error {
+    text-align: center;
+    padding: var(--space-8);
+    background: var(--color-surface-card);
+    border-radius: var(--radius-md);
+    color: var(--color-danger);
+    font-weight: 500;
+}
+
+.loader {
+    text-align: center;
+    padding: var(--space-8);
+}

@@ -1,10 +1,17 @@
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import '../styles/index.css'
+import {MainPage} from "@/pages/main";
 import {GamePage} from "@/pages/game";
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <GamePage/>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<MainPage/>}/>
+                <Route path="/game/:id/:size" element={<GamePage/>}/>
+            </Routes>
+        </BrowserRouter>
     </StrictMode>,
 )

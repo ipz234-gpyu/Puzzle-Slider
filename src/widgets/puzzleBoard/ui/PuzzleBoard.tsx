@@ -13,9 +13,10 @@ import {GameStats} from "@/entities/gameStats";
 interface GameBoardProps {
     imageUrl: string;
     gridSize?: number;
+    onWin?: (stats: {moves: number, time: number}) => void;
 }
 
-export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4}) => {
+export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4, onWin}) => {
     const isValid = isGridSizeValid(gridSize);
 
     const {tiles, moveTile, shuffle, isWon, moveCount} = usePuzzleBoard(isValid ? gridSize : 4);
@@ -29,9 +30,16 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4}) 
     }, [isLoaded, isWon, start]);
 
     useEffect(() => {
-        if (isWon)
+        if (isWon) {
             stop();
-    }, [isWon, start, stop]);
+            if (onWin) {
+                const timeoutId = setTimeout(() => {
+                    onWin({moves: moveCount, time: timer.totalSeconds});
+                }, 1500);
+                return () => clearTimeout(timeoutId);
+            }
+        }
+    }, [isWon, stop, onWin, moveCount, timer.totalSeconds]);
 
     const handleShuffle = () => {
         setIsShuffling(true);

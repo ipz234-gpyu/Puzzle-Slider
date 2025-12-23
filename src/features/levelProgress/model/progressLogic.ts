@@ -1,5 +1,5 @@
 import {type ProgressState} from "./types";
-import {MAX_TUTORIAL_SIZE, SANDBOX_MODE_SIZE, START_SIZE} from "./constants";
+import {MAX_STANDARD_LEVEL, SANDBOX_MODE_SIZE, START_SIZE} from "./constants";
 
 export const calculateNextProgress = (
     currentProgress: ProgressState,
@@ -15,9 +15,9 @@ export const calculateNextProgress = (
     let nextSize = currentUnlocked;
 
     if (completedSize === currentUnlocked) {
-        if (completedSize < MAX_TUTORIAL_SIZE) {
+        if (completedSize < MAX_STANDARD_LEVEL) {
             nextSize = completedSize + 1;
-        } else if (completedSize === MAX_TUTORIAL_SIZE) {
+        } else if (completedSize === MAX_STANDARD_LEVEL) {
             nextSize = SANDBOX_MODE_SIZE;
         }
     }

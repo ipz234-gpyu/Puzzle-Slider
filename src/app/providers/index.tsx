@@ -1,14 +1,12 @@
-import { type ReactNode } from "react";
-import { GameSettingsProvider } from "@/entities/gameSettings";
+import {type ReactNode} from "react";
 
-interface AppProvidersProps {
-    children: ReactNode;
-}
+import {StoreInitializer} from "@/entities/gameSettings";
 
-export const AppProviders = ({ children }: AppProvidersProps) => {
+export const AppProvider = ({children}: { children: ReactNode }) => {
     return (
-        <GameSettingsProvider>
+        <>
+            <StoreInitializer/>
             {children}
-        </GameSettingsProvider>
+        </>
     );
 };

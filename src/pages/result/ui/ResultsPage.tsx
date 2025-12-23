@@ -1,7 +1,7 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import styles from "./styles.module.css";
 import {Header} from "@/widgets/header";
-import {useGameSettings} from "@/entities/gameSettings";
+import {useSettingsStore} from "@/entities/gameSettings";
 import {Button} from "@/shared/ui/button";
 
 interface LocationState {
@@ -14,7 +14,7 @@ interface LocationState {
 export const ResultsPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const {settings} = useGameSettings();
+    const settings = useSettingsStore((state) => state.settings);
     const state = location.state as LocationState;
 
     if (!state) {

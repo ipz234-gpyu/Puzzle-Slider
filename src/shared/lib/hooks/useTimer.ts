@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
-import type { TimerState, Timer } from '@/shared/ui/timer';
+import {useState, useRef, useCallback, useMemo, useEffect} from 'react';
+import type {TimerState, Timer} from '@/shared/ui/timer';
 
 export const useTimer = (initialTime: number = 0) => {
     const [state, setState] = useState<TimerState>({

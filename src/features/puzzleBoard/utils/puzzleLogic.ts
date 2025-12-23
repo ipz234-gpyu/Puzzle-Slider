@@ -63,7 +63,7 @@ export const generateShuffledGrid = (gridSize: number): TileData[] => {
             isEmpty: true
         });
 
-    } while (checkIsSolved(tiles, gridSize));
+    } while (checkIsSolved(tiles, gridSize) && gridSize > 1 && gridSize < 100);
 
     return tiles;
 };

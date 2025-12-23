@@ -1,0 +1,14 @@
+.container {
+    position: relative;
+}
+
+.loading {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.setting {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

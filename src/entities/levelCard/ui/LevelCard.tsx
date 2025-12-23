@@ -1,5 +1,5 @@
 import type {ReactNode} from "react";
-import type {LevelConfig} from "../index";
+import type {LevelConfig} from "../model/levelData";
 import styles from "./styles.module.css";
 
 interface LevelCardProps {

@@ -13,10 +13,11 @@ import {GameStats} from "@/entities/gameStats";
 interface GameBoardProps {
     imageUrl: string;
     gridSize?: number;
-    onWin?: (stats: {moves: number, time: number}) => void;
+    onWin?: (stats: { moves: number, time: number }) => void;
+    isShowNumber: boolean;
 }
 
-export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4, onWin}) => {
+export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, onWin, gridSize = 4, isShowNumber = true}) => {
     const isValid = isGridSizeValid(gridSize);
 
     const {tiles, moveTile, shuffle, isWon, moveCount} = usePuzzleBoard(isValid ? gridSize : 4);
@@ -25,9 +26,10 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4, o
     const {timer, start, stop, reset} = useTimer();
 
     useEffect(() => {
-        if (isLoaded && !isWon)
-            start();
-    }, [isLoaded, isWon, start]);
+        if (isLoaded && !isWon) {
+            handleShuffle();
+        }
+    }, [isLoaded, isWon, isShowNumber]);
 
     useEffect(() => {
         if (isWon) {
@@ -39,7 +41,7 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4, o
                 return () => clearTimeout(timeoutId);
             }
         }
-    }, [isWon, stop, onWin, moveCount, timer.totalSeconds]);
+    }, [isWon]);
 
     const handleShuffle = () => {
         setIsShuffling(true);
@@ -82,7 +84,7 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4, o
                         <Tile
                             id={tile.id}
                             isEmpty={tile.isEmpty}
-                            isIdVisible={true}
+                            isIdVisible={isShowNumber}
                             gridSize={gridSize}
                             imageUrl={imageUrl}
                             onClick={moveTile}
@@ -90,7 +92,7 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, gridSize = 4, o
                     </div>
                 ))}
             </div>
-            <Flex justify="center" align="center" style={{marginTop: "1rem"}}>
+            <Flex justify="center" align="center">
                 <Button
                     variant="primary"
                     size="md"

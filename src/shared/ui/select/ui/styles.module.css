@@ -1,0 +1,44 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+}
+
+.label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.select {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-base);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--color-text-main);
+    font-size: var(--font-size-base);
+    transition: border-color var(--transition-fast);
+    box-sizing: border-box;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 1.2em;
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--color-primary-main);
+}
+
+.errorSelect {
+    border-color: var(--color-error);
+}
+
+.errorMessage {
+    font-size: var(--font-size-sm);
+    color: var(--color-error);
+}

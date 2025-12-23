@@ -1,10 +1,10 @@
-import {LevelCard, useLevels} from "@/entities/levelCard";
-import {SelectLevelSize} from "@/features/selectLevelSize";
 import styles from "./styles.module.css";
 import {Flex} from "@/shared/ui/flex";
+import {LevelCard, useLevels} from "@/entities/levelCard";
+import {LevelProgressActions} from "@/features/levelProgress";
 
 export const LevelList = () => {
-    const { levels, isLoading } = useLevels();
+    const {levels, isLoading} = useLevels();
 
     if (isLoading) {
         return <div className={styles.loading}>Loading levels...</div>;
@@ -14,9 +14,9 @@ export const LevelList = () => {
         <Flex justify="center" wrap="wrap" gap={10}>
             {levels.map((level) => (
                 <LevelCard
-                    key={level.id}
+                    key={`${level.id}`}
                     level={level}
-                    actions={<SelectLevelSize levelId={level.id}/>}
+                    actions={<LevelProgressActions levelId={level.id}/>}
                 />
             ))}
         </Flex>

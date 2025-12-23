@@ -1,6 +1,6 @@
 import {useCallback, useState, useEffect, useMemo} from "react";
-import { type TileData } from "@/entities/tile";
-import { generateShuffledGrid, checkIsSolved } from "../index.ts";
+import {generateShuffledGrid, checkIsSolved} from "../utils/puzzleLogic";
+import {type TileData} from "@/entities/tile";
 
 export function usePuzzleBoard(gridSize: number = 4) {
     const [tiles, setTiles] = useState<TileData[]>(() => generateShuffledGrid(gridSize));
@@ -28,8 +28,8 @@ export function usePuzzleBoard(gridSize: number = 4) {
 
         setTiles(prevTiles => {
             return prevTiles.map(t => {
-                if (t.id === id) return { ...t, row: emptyTile.row, col: emptyTile.col };
-                if (t.isEmpty) return { ...t, row: targetTile.row, col: targetTile.col };
+                if (t.id === id) return {...t, row: emptyTile.row, col: emptyTile.col};
+                if (t.isEmpty) return {...t, row: targetTile.row, col: targetTile.col};
                 return t;
             });
         });
@@ -40,5 +40,5 @@ export function usePuzzleBoard(gridSize: number = 4) {
         setMoveCount(0);
     }, [gridSize]);
 
-    return { tiles, moveTile, shuffle, isWon, moveCount };
+    return {tiles, moveTile, shuffle, isWon, moveCount};
 }

@@ -1,10 +1,11 @@
 import {useState} from "react";
+import {MAX_STANDARD_LEVEL} from "../model/constants";
+
 import {useGameSettings} from "@/entities/gameSettings";
 
 type ProgressState = Record<string, number>;
 
-const STORAGE_KEY = 'puzzle_progress';
-const MAX_STANDARD_LEVEL = 5; // 3 -> 4 -> 5 -> Free Mode
+const STORAGE_KEY = "puzzle_progress";
 
 export const useLevelProgress = () => {
     const {settings} = useGameSettings();

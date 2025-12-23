@@ -1,33 +1,15 @@
-import {useState} from "react";
-
-interface WinStats {
-    moves: number;
-    time: number;
-}
+import {useShallow} from "zustand/react/shallow";
+import {useGameSessionStore} from "./useGameSessionStore";
 
 export const useGameSession = () => {
-    const [sessionId, setSessionId] = useState(0);
-
-    const [winStats, setWinStats] = useState<WinStats | null>(null);
-    const [isWinModalOpen, setIsWinModalOpen] = useState(false);
-
-    const handleWin = (stats: WinStats) => {
-        setWinStats(stats);
-        setIsWinModalOpen(true);
-    };
-
-    const restartGame = () => {
-        setWinStats(null);
-        setIsWinModalOpen(false);
-        setSessionId((prev) => prev + 1);
-    };
-
-    return {
-        sessionId,
-        winStats,
-        isWinModalOpen,
-        setIsWinModalOpen,
-        handleWin,
-        restartGame,
-    };
+    return useGameSessionStore(
+        useShallow((state) => ({
+            sessionId: state.sessionId,
+            winStats: state.winStats,
+            isWinModalOpen: state.isWinModalOpen,
+            setIsWinModalOpen: state.setIsWinModalOpen,
+            handleWin: state.handleWin,
+            restartGame: state.restartGame,
+        }))
+    );
 };

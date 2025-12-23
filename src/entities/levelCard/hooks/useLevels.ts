@@ -1,17 +1,21 @@
-import {useState, useEffect} from "react";
-import {type LevelConfig} from "../model/levelData";
-import {levelApi} from "../api/levelApi";
+import {useEffect} from "react";
+import {useShallow} from "zustand/react/shallow";
+import {useLevelStore} from "./useLevelStore";
 
 export const useLevels = () => {
-    const [levels, setLevels] = useState<LevelConfig[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const {levels, levelsLoading, initLevels} = useLevelStore(
+        useShallow((state) => ({
+            levels: state.levels,
+            levelsLoading: state.levelsLoading,
+            initLevels: state.initLevels,
+        }))
+    );
 
     useEffect(() => {
-        levelApi.getLevels()
-            .then(setLevels)
-            .catch((err) => console.error(err))
-            .finally(() => setIsLoading(false));
-    }, []);
+        if (levels.length === 0) {
+            initLevels();
+        }
+    }, [levels.length, initLevels]);
 
-    return {levels, isLoading};
+    return {levels, isLoading: levelsLoading};
 };

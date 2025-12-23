@@ -1,4 +1,4 @@
 export type {GameSettings} from "./model/types";
-export {GameSettingsContext} from "./model/context"
+export {useSettingsStore} from "./hooks/useSettingsStore";
 export {useGameSettings} from "./hooks/useGameSettings";
-export {GameSettingsProvider} from "./ui/GameSettingsProvider";
+export {StoreInitializer} from "./ui/StoreInitializer";

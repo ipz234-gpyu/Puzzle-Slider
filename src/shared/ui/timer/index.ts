@@ -1,2 +1,2 @@
-export type {TimerState, Timer} from "./model/types.ts";
-export {TimerDisplay} from "./ui/TimerDisplay.tsx"
+export type {TimerState, Timer} from "./model/types";
+export {TimerDisplay} from "./ui/TimerDisplay"

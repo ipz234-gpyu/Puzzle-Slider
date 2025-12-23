@@ -1,6 +1,6 @@
 import React from 'react';
-import type {Timer} from '../index.ts';
 import styles from './styles.module.css';
+import type {Timer} from '../index.ts';
 
 interface TimerDisplayProps {
     timer: Timer;

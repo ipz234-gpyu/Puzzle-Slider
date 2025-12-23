@@ -40,6 +40,12 @@
     --radius-md: 0.5rem; /* 8px - стандарт для кнопок */
     --radius-lg: 0.75rem; /* 12px - для карток */
     --radius-full: 9999px; /* Круглі кнопки */
+    /* Board-specific radius */
+    --radius-board: 4%;
+
+    /* Aliases for older naming conventions used across modules */
+    --border-radius-lg: var(--radius-lg);
+    --border-radius-full: var(--radius-full);
 
     /* ------------------------------
        4. ТИПОГРАФІКА (TYPOGRAPHY)
@@ -48,8 +54,13 @@
     --font-size-base: 1rem;
     --font-size-lg: 1.125rem;
     --font-size-xl: 1.25rem;
-    --font-size-xxl: 2rem;
+    --font-size-4xl: 2rem;
     --font-size-display: 3rem;
+    --font-size-xs: 0.75rem;
+    --font-size-md: var(--font-size-base);
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-5xl: 2.25rem;
 
     /* ------------------------------
        5. ШАРИ (Z-INDEX)
@@ -59,6 +70,53 @@
     --z-sticky: 10;
 
     --transition-fast: 0.2s ease;
+
+    /* Spacing scale extended */
+    --space-8: 3rem; /* 48px */
+
+    /* Color aliases & variants */
+    --color-primary-light: #6366f1;
+    --color-primary-dark: #312e81;
+    --color-primary-variant: var(--color-primary-light);
+    --color-danger: var(--color-error);
+
+    /* Text and mono font variables */
+    --font-mono: 'Courier New', monospace;
+
+    /* Shadows */
+    --shadow-md: 0 10px 25px rgba(0,0,0,0.2);
+    /* Additional shadow tokens */
+    --shadow-card: 0 10px 20px rgba(0, 0, 0, 0.3);
+    --focus-ring: 0 0 0 2px rgba(var(--rgb-primary), 0.2);
+    /* Typography */
+    --font-family-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
+    /* Primary visual tweaks */
+    --primary-gradient: linear-gradient(90deg, var(--color-primary-main), var(--color-primary-light));
+    --overlay-blur: 6px;
+    --overlay-color: rgba(0,0,0,0.6);
+
+    /* Additional shadow scale */
+    --shadow-sm: 0 4px 10px rgba(0,0,0,0.12);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.35);
+
+    /* Small visual tokens */
+    --card-gap: var(--space-3);
+    --transition-smooth: 0.28s cubic-bezier(.2,.9,.2,1);
+    /* Toggle sizes */
+    --toggle-width: 44px;
+    --toggle-height: 24px;
+    --toggle-knob: 18px;
+    /* Board and modal sizes */
+    --board-border-width: 10px;
+    --modal-max-width: 500px;
+    /* Button padding tokens */
+    --btn-padding-sm: 6px 12px;
+    --btn-padding-md: 10px 20px;
+    --btn-padding-lg: 14px 28px;
 
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;

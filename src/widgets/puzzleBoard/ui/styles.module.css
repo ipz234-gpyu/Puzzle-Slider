@@ -3,11 +3,11 @@
     max-height: 30em;
     margin: 0 auto;
     background: var(--color-surface-card);
-    border-radius: 4%;
+    border-radius: var(--radius-board);
     box-sizing: border-box;
     overflow: hidden;
 
-    border: 10px solid var(--color-border-focus);
+    border: var(--board-border-width) solid var(--color-border-focus);
 }
 
 .tileWrapper {

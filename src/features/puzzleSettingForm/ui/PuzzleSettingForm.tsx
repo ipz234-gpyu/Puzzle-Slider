@@ -46,7 +46,7 @@ export const PuzzleSettingForm = ({sizeCount, showNumbers, onSubmit, onSuccess}:
                     {...register('sizeCount', {
                         required: "Size is required",
                         min: {value: 2, message: "Minimum size is 2"},
-                        max: {value: 8, message: "Maximum size is 8"},
+                        max: {value: 10, message: "Maximum size is 10"},
                         valueAsNumber: true
                     })}
                 />

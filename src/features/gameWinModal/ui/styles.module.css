@@ -5,7 +5,7 @@
 }
 
 .playerName {
-    font-size: var(--font-size-xxl);
+    font-size: var(--font-size-2xl);
     color: var(--color-text-muted);
     text-align: center;
     border-bottom: 3px solid var(--color-border-subtle);
@@ -37,13 +37,13 @@
 }
 
 .statLabel {
-    font-size: var(--font-size-xxl);
+    font-size: var(--font-size-2xl);
     color: var(--color-text-secondary);
     text-transform: uppercase;
 }
 
 .statValue {
-    font-size: var(--font-size-xxl);
+    font-size: var(--font-size-2xl);
     font-weight: bold;
     color: var(--color-text-main);
 }

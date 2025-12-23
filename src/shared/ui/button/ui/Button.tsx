@@ -8,6 +8,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
          variant = 'primary',
          size = 'md',
          isLoading = false,
+         fullWidth = false,
          children,
          disabled,
          ...props
@@ -17,6 +18,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             styles.button,
             styles[variant],
             styles[size],
+            fullWidth ? styles.fullWidth : '',
             className
         ].join(' ');
 

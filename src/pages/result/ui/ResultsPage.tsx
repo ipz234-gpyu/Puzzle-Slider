@@ -1,7 +1,8 @@
 import {useLocation, useNavigate} from "react-router-dom";
-import {Header} from "@/widgets/header";
-import {Button} from "@/shared/ui/button";
 import styles from "./styles.module.css";
+import {Header} from "@/widgets/header";
+import {useGameSettings} from "@/entities/gameSettings";
+import {Button} from "@/shared/ui/button";
 
 interface LocationState {
     moves: number;
@@ -13,6 +14,7 @@ interface LocationState {
 export const ResultsPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const {settings} = useGameSettings();
     const state = location.state as LocationState;
 
     if (!state) {
@@ -39,7 +41,7 @@ export const ResultsPage = () => {
 
     return (
         <div className="page">
-            <Header title="Вітаємо з перемогою!" />
+            <Header title={`Вітаємо, ${settings.playerName}!`} />
             
             <div className={styles.container}>
                 <div className={styles.card}>

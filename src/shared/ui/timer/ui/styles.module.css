@@ -1,16 +1,16 @@
 .timer {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-family: 'Courier New', monospace;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
 }
 
 .time {
-    font-size: 24px;
+    font-size: var(--font-size-2xl);
     font-weight: bold;
-    color: #aaaaaa;
+    color: var(--color-text-muted);
 }
 
 .paused {
-    color: #5e5e5e;
+    color: var(--color-text-secondary);
 }

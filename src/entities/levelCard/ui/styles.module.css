@@ -11,9 +11,9 @@
     user-select: none;
 
     &:hover {
-        transform: translateY(-4px);
+        transform: translateY(-6px) scale(1.01);
         border-color: var(--color-primary-main);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        box-shadow: var(--shadow-lg);
 
         .content {
             opacity: 1;

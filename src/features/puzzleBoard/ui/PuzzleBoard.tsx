@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 import styles from "./styles.module.css";
 
 import {useImageLoader} from "@/shared/lib/hooks";
@@ -25,11 +25,19 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, onWin, gridSize
     const [isShuffling, setIsShuffling] = useState(false);
     const {timer, start, stop, reset} = useTimer();
 
+    const handleShuffle = useCallback(() => {
+        setIsShuffling(true);
+        reset();
+        shuffle();
+        setTimeout(() => setIsShuffling(false), 50);
+        start();
+    }, [reset, shuffle, start]);
+
     useEffect(() => {
         if (isLoaded && !isWon) {
             handleShuffle();
         }
-    }, [isLoaded, isWon, isShowNumber]);
+    }, [isLoaded, isWon, handleShuffle]);
 
     useEffect(() => {
         if (isWon) {
@@ -41,15 +49,7 @@ export const PuzzleBoard: React.FC<GameBoardProps> = ({imageUrl, onWin, gridSize
                 return () => clearTimeout(timeoutId);
             }
         }
-    }, [isWon]);
-
-    const handleShuffle = () => {
-        setIsShuffling(true);
-        reset();
-        shuffle();
-        setTimeout(() => setIsShuffling(false), 50);
-        start();
-    };
+    }, [isWon, stop, onWin, moveCount, timer.totalSeconds]);
 
     if (!isValid) return (
         <div className={styles.error}>

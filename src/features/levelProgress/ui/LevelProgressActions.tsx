@@ -34,6 +34,13 @@ export const LevelProgressActions = ({levelId}: LevelProgressActionsProps) => {
             >
                 {buttonText}
             </Button>
+            <Button
+                onClick={() => navigate(`/result/${levelId}`)}
+                variant="outline"
+                size="sm"
+            >
+                View Results
+            </Button>
         </Flex>
     );
 };

@@ -1,9 +1,11 @@
 import {useNavigate} from "react-router-dom";
 import styles from "./styles.module.css";
-import {useGameSettings} from "@/entities/gameSettings";
+
 import {Modal} from "@/shared/ui/modal/ui/Modal";
 import {Button} from "@/shared/ui/button";
 import {Flex} from "@/shared/ui/flex";
+import {formatTime} from "@/shared/lib/model";
+import {useGameSettings} from "@/entities/gameSettings";
 
 interface GameWinModalProps {
     isOpen: boolean;
@@ -27,12 +29,6 @@ export const GameWinModal = ({
                              }: GameWinModalProps) => {
     const navigate = useNavigate();
     const {settings} = useGameSettings();
-
-    const formatTime = (totalSeconds: number) => {
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = totalSeconds % 60;
-        return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-    };
 
     return (
         <Modal
@@ -69,6 +65,9 @@ export const GameWinModal = ({
                     <Flex gap={10}>
                         <Button variant="outline" size="md" onClick={onRestart} fullWidth>
                             Try again
+                        </Button>
+                        <Button variant="outline" size="md" onClick={() => navigate('/results')} fullWidth>
+                            View Results
                         </Button>
                         <Button variant="outline" size="md" onClick={() => navigate('/')} fullWidth>
                             Menu

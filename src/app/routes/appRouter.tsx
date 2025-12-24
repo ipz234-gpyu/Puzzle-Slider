@@ -13,7 +13,11 @@ export const appRouter = createBrowserRouter([
         element: <GamePage />,
     },
     {
-        path: "/result",
+        path: "/results",
+        element: <ResultsPage />,
+    },
+    {
+        path: "/result/:levelId",
         element: <ResultsPage />,
     },
     {

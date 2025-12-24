@@ -1,16 +1,19 @@
-import {useNavigate} from "react-router-dom";
-import {useResultsHistory} from "@/features/resultsHistory";
-import {ResultCard} from "@/entities/resultCard";
-import {Button} from "@/shared/ui/button";
+import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+
+import { Button } from "@/shared/ui/button";
+import { Flex } from "@/shared/ui/flex";
+import { LevelCard } from "@/entities/levelCard/ui/LevelCard.tsx";
+import { useResultsHistory } from "@/features/resultsHistory";
+import { formatTime } from "@/shared/lib/model";
 
 interface ResultsOverviewProps {
     levelId?: string;
 }
 
-export const ResultsOverview = ({levelId}: ResultsOverviewProps) => {
+export const ResultsOverview = ({ levelId }: ResultsOverviewProps) => {
     const navigate = useNavigate();
-    const {results, getLevelResults, hasResults} = useResultsHistory();
+    const { results, getLevelResults, hasResults } = useResultsHistory();
 
     const displayResults = levelId ? getLevelResults(levelId) : results;
 
@@ -18,67 +21,86 @@ export const ResultsOverview = ({levelId}: ResultsOverviewProps) => {
         return (
             <div className={styles.empty}>
                 <p className={styles.emptyText}>
-                    Поки що немає пройдених рівнів.
+                    You haven’t completed any levels yet.
                     <br />
-                    Спробуйте спочатку зіграти!
+                    Try playing first!
                 </p>
                 <Button onClick={() => navigate("/")}>
-                    До головного меню
+                    Go to main menu
                 </Button>
             </div>
         );
     }
 
-
     if (displayResults.length === 0 && levelId) {
         return (
             <div className={styles.empty}>
                 <p className={styles.emptyText}>
-                    Немає результатів для цього рівня
+                    No results for this level yet.
                 </p>
                 <Button onClick={() => navigate("/results")}>
-                    Всі результати
+                    View all results
                 </Button>
             </div>
         );
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.header}>
+        <>
+            <Flex className={styles.container} justify="between" align="center">
                 <h2 className={styles.title}>
-                    {levelId ? "Результати рівня" : "Всі результати"}
+                    {levelId ? "Level statistics" : "All statistics"}
                 </h2>
                 <span className={styles.count}>
-                    {displayResults.length} {displayResults.length === 1 ? "результат" : "результатів"}
+                    {displayResults.length}{" "}
+                    {displayResults.length === 1 ? "result" : "results"}
                 </span>
-            </div>
+            </Flex>
 
-            <div className={styles.list}>
+            <Flex justify="center" wrap="wrap" gap={10}>
                 {displayResults.map((result, index) => (
-                    <ResultCard
+                    <LevelCard
                         key={`${result.levelId}-${result.gridSize}-${index}`}
-                        imageUrl={result.imageUrl}
-                        title={result.levelName}
-                        gridSize={result.gridSize}
-                        time={result.time}
-                        moves={result.moves}
+                        level={{
+                            id: Number(result.levelId),
+                            title: result.levelName,
+                            imageUrl: result.imageUrl,
+                        }}
                         actions={
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() =>
-                                    navigate(`/game/${result.levelId}`, {
-                                        state: {size: result.gridSize},
-                                    })
-                                }
+                            <Flex
+                                direction="column"
+                                align="center"
+                                justify="center"
+                                gap="var(--space-1)"
+                                fullWidth
                             >
-                                Грати знову
-                            </Button>
+                                <Flex justify="around" align="center" fullWidth>
+                                    <span className={styles.statLabel}>Grid size</span>
+                                    <div className={styles.statValue}>
+                                        <div className={styles.badge}>
+                                            {result.gridSize}×{result.gridSize}
+                                        </div>
+                                    </div>
+                                </Flex>
+
+                                <Flex justify="around" align="center" fullWidth>
+                                    <span className={styles.statLabel}>Moves</span>
+                                    <span className={styles.statValue}>
+                                        {result.moves}
+                                    </span>
+                                </Flex>
+
+                                <Flex justify="around" align="center" fullWidth>
+                                    <span className={styles.statLabel}>Time</span>
+                                    <span className={styles.statValue}>
+                                        {formatTime(result.time)}
+                                    </span>
+                                </Flex>
+                            </Flex>
                         }
                     />
                 ))}
-            </div>
-        </div>
+            </Flex>
+        </>
     );
 };

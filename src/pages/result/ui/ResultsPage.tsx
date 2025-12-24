@@ -1,83 +1,29 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import styles from "./styles.module.css";
+import {useParams} from "react-router-dom";
 import {Header} from "@/widgets/header";
-import {useSettingsStore} from "@/entities/gameSettings";
-import {Button} from "@/shared/ui/button";
-
-interface LocationState {
-    moves: number;
-    time: number;
-    levelName: string;
-    gridSize: number;
-}
+import {ResultsOverview} from "@/widgets/resultsOverview";
+import {useLoadResultsData} from "@/features/resultsHistory";
+import {useGameSettings} from "@/entities/gameSettings";
+import styles from "./styles.module.css";
 
 export const ResultsPage = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const settings = useSettingsStore((state) => state.settings);
-    const state = location.state as LocationState;
+    const {levelId} = useParams<{levelId?: string}>();
+    const {settings} = useGameSettings();
+    const {isLoading, isReady} = useLoadResultsData();
 
-    if (!state) {
-        return (
-            <div className="page">
-                <Header title="No Results" showBackButton />
-                <div className={styles.container}>
-                    <p>Нічого показувати. Спробуйте спочатку зіграти!</p>
-                    <Button onClick={() => navigate("/")} style={{marginTop: "1rem"}}>
-                        До головного меню
-                    </Button>
-                </div>
-            </div>
-        );
-    }
-
-    const {moves, time, levelName, gridSize} = state;
-
-    const formatTime = (totalSeconds: number) => {
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = totalSeconds % 60;
-        return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-    };
+    const title = levelId
+        ? `Результати рівня`
+        : `Результати, ${settings.playerName}`;
 
     return (
         <div className="page">
-            <Header title={`Вітаємо, ${settings.playerName}!`} />
-            
+            <Header title={title} showBackButton />
+
             <div className={styles.container}>
-                <div className={styles.card}>
-                    <div className={styles.levelInfo}>
-                        <strong>{levelName}</strong>
-                        <div className={styles.badge}>{gridSize}x{gridSize}</div>
-                    </div>
-
-                    <div className={styles.statsGrid}>
-                        <div className={styles.statItem}>
-                            <span className={styles.statLabel}>Час</span>
-                            <span className={styles.statValue}>{formatTime(time)}</span>
-                        </div>
-                        <div className={styles.statItem}>
-                            <span className={styles.statLabel}>Ходи</span>
-                            <span className={styles.statValue}>{moves}</span>
-                        </div>
-                    </div>
-
-                    <div className={styles.actions}>
-                        <Button 
-                            variant="primary" 
-                            size="lg" 
-                            onClick={() => navigate(-1)}
-                        >
-                            Спробувати знову
-                        </Button>
-                        <Button 
-                            variant="outline" 
-                            size="lg" 
-                            onClick={() => navigate("/")}
-                        >
-                            До меню вибору рівнів
-                        </Button>
-                    </div>
-                </div>
+                {isLoading && !isReady ? (
+                    <div className={styles.loading}>Завантаження результатів...</div>
+                ) : (
+                    <ResultsOverview levelId={levelId} />
+                )}
             </div>
         </div>
     );

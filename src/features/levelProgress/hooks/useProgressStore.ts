@@ -17,6 +17,7 @@ interface ProgressStateStore {
         stats: { time: number; moves: number },
         playerName: string
     ) => Promise<void>;
+
     getLevelStatus: (levelId: number) => {
         currentSize: number;
         isSandbox: boolean;

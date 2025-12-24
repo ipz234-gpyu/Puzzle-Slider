@@ -6,6 +6,7 @@ import {useGameSettings} from "@/entities/gameSettings";
 
 export const useGameProgress = () => {
     const {settings} = useGameSettings();
+    const playerName = settings.playerName;
     const {progress, isLoading, error, initProgress, handleLevelComplete, getLevelStatus} = useProgressStore(
         useShallow((state) => ({
             progress: state.progress,
@@ -18,16 +19,17 @@ export const useGameProgress = () => {
     );
 
     useEffect(() => {
-        if (settings.playerName) {
-            initProgress(settings.playerName);
+        if (playerName) {
+            initProgress(playerName);
         }
-    }, [settings.playerName, initProgress]);
+    }, [playerName, initProgress]);
 
     const onLevelComplete = (
         levelId: number,
         completedSize: number,
         stats: { time: number; moves: number }
     ) => {
+        if (!playerName) return;
         handleLevelComplete(levelId, completedSize, stats, settings.playerName);
     };
 

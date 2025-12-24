@@ -70,6 +70,9 @@ export const GameWinModal = ({
                         <Button variant="outline" size="md" onClick={onRestart} fullWidth>
                             Try again
                         </Button>
+                        <Button variant="outline" size="md" onClick={() => navigate('/results')} fullWidth>
+                            View Results
+                        </Button>
                         <Button variant="outline" size="md" onClick={() => navigate('/')} fullWidth>
                             Menu
                         </Button>

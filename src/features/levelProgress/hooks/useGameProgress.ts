@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {useShallow} from "zustand/react/shallow";
-
 import {useProgressStore} from "./useProgressStore";
+
 import {useGameSettings} from "@/entities/gameSettings";
 
 export const useGameProgress = () => {
@@ -23,8 +23,12 @@ export const useGameProgress = () => {
         }
     }, [settings.playerName, initProgress]);
 
-    const onLevelComplete = (levelId: number, completedSize: number) => {
-        handleLevelComplete(levelId, completedSize, settings.playerName);
+    const onLevelComplete = (
+        levelId: number,
+        completedSize: number,
+        stats: { time: number; moves: number }
+    ) => {
+        handleLevelComplete(levelId, completedSize, stats, settings.playerName);
     };
 
     return {

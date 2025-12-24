@@ -1,0 +1,56 @@
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.emptyText {
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+}
+
+.title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-main);
+}
+
+.count {
+    color: var(--color-text-secondary);
+}
+
+.badge {
+    width: 40%;
+    padding: 0.25rem 0.75rem;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary-dark);
+    background: var(--color-primary-light);
+    border-radius: var(--border-radius-full);
+}
+
+.statLabel {
+    width: 40%;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-secondary);
+}
+
+.statValue {
+    width: 40%;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-main);
+}

@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# 🧩 Puzzle Slider Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Інтерактивна гра-головоломка, де потрібно розставити плитки з картинкою у правильному порядку. Проєкт побудований з використанням React, TypeScript та Feature-Sliced Design архітектури.
 
-Currently, two official plugins are available:
+## 📸 Скриншоти
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+![img_3.png](img_3.png)
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
 
-## React Compiler
+## ✨ Основні можливості
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🎮 **Прогресивна система рівнів** — розпочни з простих пазлів 3×3 і дійди до складних 10×10
+- 🏆 **Відстеження рекордів** — збережи свої найкращі результати для кожного розміру сітки
+- 📊 **Детальна статистика** — відстежувати час та кількість ходів
+- 🎨 **Різноманітні рівні** — унікальні картинки для кожного пазла
+- 💾 **Збереження прогресу** — твій прогрес зберігається автоматично
+- 📱 **Адаптивний дизайн** — грай на будь-якому пристрої
 
-## Expanding the ESLint configuration
+## 🛠️ Технології
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 18** — сучасна бібліотека для побудови UI
+- **TypeScript** — типізація для надійності коду
+- **Zustand** — легкий state management
+- **React Router** — маршрутизація сторінок
+- **Vite** — швидкий bundler
+- **CSS Modules** — ізольовані стилі
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🏗️ Архітектура
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Проєкт побудований за принципами **Feature-Sliced Design (FSD)**:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── app/          # Ініціалізація додатку, роутинг, провайдери
+├── pages/        # Сторінки додатку
+├── widgets/      # Складні UI блоки
+├── features/     # Бізнес-логіка та функціональність
+├── entities/     # Бізнес-сутності
+└── shared/       # Переповторювані компоненти та утиліти
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Швидкий старт
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Встановлення
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Клонування репозиторію
+git clone <repository-url>
+
+# Перехід до директорії проєкту
+cd puzzle-slider
+
+# Встановлення залежностей
+npm install
 ```
+
+### Запуск у режимі розробки
+
+```bash
+npm run dev
+```
+
+### Збірка для production
+
+```bash
+npm run build
+```
+
+### Перегляд production збірки
+
+```bash
+npm run preview
+```
+
+## 🎮 Як грати
+
+1. **Введи своє ім'я** на головному екрані
+2. **Обери рівень** зі списку доступних пазлів
+3. **Клікай на плитки** поруч з порожнім місцем, щоб переміщати їх
+4. **Склади повну картинку** якнайшвидше та з мінімальною кількістю ходів!
+
+## 🎯 Система прогресу
+
+- Почни з рівня **3×3**
+- Пройди поточний розмір, щоб розблокувати **наступний**
+- Досягни розміру **5×5**, щоб відкрити **пісочницю**
+
+## 💾 Збереження даних
+
+Прогрес гравців зберігається локально та включає:
+
+- Поточний розблокований розмір для кожного рівня
+- Найкращі результати (час та ходи) для кожного розміру
+- Статус відкриття режиму пісочниці
+
+---
+
+Зроблено з ❤️, безсонних ночей та багатьма переміщеннями плиток

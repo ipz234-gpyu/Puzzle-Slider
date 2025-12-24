@@ -1,7 +1,7 @@
 import {create} from "zustand";
 
 import {progressApi} from "../api/progressApi";
-import {calculateNextProgress, isSandboxMode} from "../model/progressLogic";
+import {calculateNextProgress} from "../model/progressLogic";
 import {type ProgressState} from "../model/types";
 import {START_SIZE} from "../model/constants";
 
@@ -11,8 +11,18 @@ interface ProgressStateStore {
     error: string | null;
 
     initProgress: (playerName: string) => Promise<void>;
-    handleLevelComplete: (levelId: number, completedSize: number, playerName: string) => Promise<void>;
-    getLevelStatus: (levelId: number) => { currentSize: number; isSandbox: boolean };
+    handleLevelComplete: (
+        levelId: number,
+        completedSize: number,
+        stats: { time: number; moves: number },
+        playerName: string
+    ) => Promise<void>;
+
+    getLevelStatus: (levelId: number) => {
+        currentSize: number;
+        isSandbox: boolean;
+        bestRecords: Record<number, { time: number; moves: number }>;
+    };
 }
 
 export const useProgressStore = create<ProgressStateStore>((set, get) => ({
@@ -33,9 +43,14 @@ export const useProgressStore = create<ProgressStateStore>((set, get) => ({
         }
     },
 
-    handleLevelComplete: async (levelId: number, completedSize: number, playerName: string) => {
+    handleLevelComplete: async (
+        levelId: number,
+        completedSize: number,
+        stats: { time: number; moves: number },
+        playerName: string
+    ) => {
         const {progress} = get();
-        const newProgress = calculateNextProgress(progress, levelId, completedSize);
+        const newProgress = calculateNextProgress(progress, levelId, completedSize, stats);
 
         if (newProgress === progress) return;
 
@@ -51,10 +66,20 @@ export const useProgressStore = create<ProgressStateStore>((set, get) => ({
 
     getLevelStatus: (levelId: number) => {
         const {progress} = get();
-        const size = progress[levelId] || START_SIZE;
+        const puzzle = progress[levelId];
+
+        if (!puzzle) {
+            return {
+                currentSize: START_SIZE,
+                isSandbox: false,
+                bestRecords: {}
+            };
+        }
+
         return {
-            currentSize: size,
-            isSandbox: isSandboxMode(size),
+            currentSize: puzzle.currentUnlocked,
+            isSandbox: puzzle.isSandbox,
+            bestRecords: puzzle.bestRecords
         };
     },
 }));

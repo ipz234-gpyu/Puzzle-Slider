@@ -26,13 +26,12 @@ export const GameSession = ({level}: GameSessionProps) => {
         }
     }, [status, playedSize]);
 
-
     if (isLoading || playedSize === null || !status) {
         return <div className={styles.loading}>Loading...</div>;
     }
 
     const onGameWin = (stats: { moves: number; time: number }) => {
-        onLevelComplete(level.id, playedSize);
+        onLevelComplete(level.id, playedSize, stats);
         handleWin(stats);
     };
 
@@ -94,7 +93,6 @@ export const GameSession = ({level}: GameSessionProps) => {
                     time={winStats.time}
                     levelName={level.title}
                     gridSize={playedSize}
-
                     onRestart={handleRestartCurrent}
                     onNextLevel={handleGoToNext}
                 />

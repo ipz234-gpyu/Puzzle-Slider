@@ -1,0 +1,57 @@
+---
+sidebar_position: 3
+title: Interactive Toggle Switch
+description: Live documentation for the shared Toggle control.
+---
+
+import { useState } from 'react';
+import { Toggle } from '../../../src/shared/ui/toggle/ui/Toggle';
+
+export const TogglePreview = () => {
+  const [enabled, setEnabled] = useState(true);
+
+  return (
+    <div className="uiKitPreview" style={{ display: 'grid', gap: '0.75rem', maxWidth: '32rem' }}>
+      <Toggle
+        checked={enabled}
+        onChange={(event) => setEnabled(event.target.checked)}
+        label="Enable puzzle progress persistence"
+      />
+      <p style={{ margin: 0 }}>
+        Current value: <strong>{enabled ? 'true' : 'false'}</strong>
+      </p>
+    </div>
+  );
+};
+
+# Interactive Toggle Switch
+
+Toggle is the shared checkbox-style switch used throughout the app for privacy and configuration controls. The example below is a controlled MDX preview that flips between `true` and `false` in real time.
+
+## Import
+
+```tsx
+import { Toggle } from '../../../src/shared/ui/toggle/ui/Toggle';
+```
+
+## Live Example
+
+<TogglePreview />
+
+:::tip
+This is a controlled input. Always pass both `checked` and `onChange` when you want the toggle to reflect React state rather than uncontrolled DOM state.
+:::
+
+## API Surface
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `checked` | `boolean` | `false` | Controls whether the switch is on or off. |
+| `onChange` | `(event) => void` | required for controlled usage | Handles state updates when the input changes. |
+| `disabled` | `boolean` | `false` | Prevents user interaction and visually disables the control. |
+| `label` | `string` | optional | Displays text beside the switch and is also used to derive a stable input id when one is not supplied. |
+
+## Notes
+
+- The component forwards the remaining native checkbox attributes to the underlying input.
+- Use concise labels so the wrapper stays readable inside dense settings panels.

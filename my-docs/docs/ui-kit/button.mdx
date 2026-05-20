@@ -1,0 +1,49 @@
+---
+sidebar_position: 2
+title: Shared Button Component
+description: Live documentation for the shared Button primitive.
+---
+
+import { Button } from '../../../src/shared/ui/button/ui/Button';
+
+# Shared Button Component
+
+The Button component provides the common action primitive for the application. It supports size and variant tuning while preserving the native button surface for accessibility and form integration.
+
+## Import
+
+```tsx
+import { Button } from '../../../src/shared/ui/button/ui/Button';
+```
+
+## Live Example
+
+```mdx
+<Button variant="primary" size="md">Primary Action</Button>
+<Button variant="secondary" size="md">Secondary Action</Button>
+<Button variant="outline" size="sm">Small Outline</Button>
+```
+
+<div className="uiKitPreview" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+  <Button variant="primary" size="md">Primary Action</Button>
+  <Button variant="secondary" size="md">Secondary Action</Button>
+  <Button variant="outline" size="sm">Small Outline</Button>
+</div>
+
+:::info
+`isLoading` disables the button and swaps the visible label to a compact loading indicator. `fullWidth` stretches the button to the width of its container.
+:::
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `primary \| secondary \| outline` | `primary` | Selects the visual treatment of the button. |
+| `size` | `sm \| md \| lg` | `md` | Controls the horizontal and vertical padding. |
+| `fullWidth` | `boolean` | `false` | Expands the button to fill the parent width. |
+| `isLoading` | `boolean` | `false` | Disables the button and shows a loading state. |
+
+## Notes
+
+- The component forwards native button attributes such as `type`, `onClick`, and `disabled`.
+- Keep action labels short so the loading state remains readable in compact layouts.

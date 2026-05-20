@@ -68,7 +68,37 @@ cd puzzle-slider
 ```bash
 npm install
 ```
+src/
+├── app/          # Ініціалізація додатку, роутинг, провайдери
+├── pages/        # Сторінки додатку
+├── widgets/      # Складні UI блоки
+├── features/     # Бізнес-логіка та функціональність
+├── entities/     # Бізнес-сутності
+└── shared/       # Переповторювані компоненти та утиліти
+```
 
+## 🚀 Швидкий старт
+
+### Встановлення
+
+```bash
+# Клонування репозиторію
+git clone <repository-url>
+
+# Перехід до директорії проєкту
+cd puzzle-slider
+
+# Встановлення залежностей
+npm install
+```
+
+### Запуск у режимі розробки
+
+```bash
+npm run dev
+```
+
+### Збірка для production
 
 3. Deploy the application in local development mode:
 ```bash

@@ -1,8 +1,7 @@
 import styles from "./styles.module.css";
 import {Flex} from "@/shared/ui/flex";
-import {useLevels} from "@/entities/levelCard";
+import {useLevels, LevelCard} from "@/entities/levelCard";
 import {LevelProgressActions} from "@/features/levelProgress";
-import {LevelCard} from "@/entities/levelCard/ui/LevelCard.tsx";
 
 export const LevelList = () => {
     const {levels, isLoading} = useLevels();

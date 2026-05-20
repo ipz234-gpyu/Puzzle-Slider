@@ -1,7 +1,7 @@
 import {create} from "zustand";
-import {generateShuffledGrid, checkIsSolved} from "../utils/puzzleLogic";
+import {generateShuffledGrid, checkIsSolved} from "@/shared/lib";
 
-import {type TileData} from "@/entities/tile";
+import type {TileData} from "@/shared/types";
 
 interface PuzzleBoardState {
     tiles: TileData[];

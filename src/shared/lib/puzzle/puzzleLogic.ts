@@ -1,4 +1,4 @@
-import type {TileData} from "@/entities/tile";
+import type { TileData } from '@/shared/types';
 
 export const generateSolvedGrid = (gridSize: number): TileData[] => {
     return Array.from({ length: gridSize * gridSize }, (_, index) => {
@@ -28,7 +28,6 @@ export const isSolvable = (ids: number[]): boolean => {
             if (ids[i] > ids[j]) inversions++;
         }
     }
-
     return inversions % 2 === 0;
 };
 

@@ -3,7 +3,7 @@ import {useShallow} from "zustand/react/shallow";
 
 import {useGameSettings} from "@/entities/gameSettings";
 import {useProgressStore} from "@/features/levelProgress";
-import {useLevelStore} from "@/entities/levelCard/hooks/useLevelStore";
+import {useLevelStore} from "@/entities/levelCard";
 
 export const useLoadResultsData = () => {
 	const {settings} = useGameSettings();

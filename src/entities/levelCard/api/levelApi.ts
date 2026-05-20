@@ -2,8 +2,9 @@ import type {LevelConfig} from "../model/levelData";
 
 const imagesRecord = import.meta.glob('@/shared/assets/img/*.{png,jpg,jpeg}', {
     eager: true,
-    as: 'url'
-});
+    query: '?url',
+    import: 'default'
+}) as Record<string, string>;
 
 const MOCK_DB: LevelConfig[] = Object.entries(imagesRecord).map(([path, url], index) => {
     const fileName = path.split('/').pop()?.split('.')[0] || `Level ${index + 1}`;

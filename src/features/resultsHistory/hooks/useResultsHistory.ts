@@ -2,7 +2,7 @@ import {useMemo} from "react";
 import {useShallow} from "zustand/react/shallow";
 
 import {useProgressStore} from "@/features/levelProgress";
-import {useLevelStore} from "@/entities/levelCard/hooks/useLevelStore";
+import {useLevelStore} from "@/entities/levelCard";
 
 export interface LevelResult {
     levelId: string;

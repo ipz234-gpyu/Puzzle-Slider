@@ -1,10 +1,10 @@
 import {useNavigate} from "react-router-dom";
 import styles from "./styles.module.css";
 
-import {Modal} from "@/shared/ui/modal/ui/Modal";
+import {Modal} from "@/shared/ui/modal";
 import {Button} from "@/shared/ui/button";
 import {Flex} from "@/shared/ui/flex";
-import {formatTime} from "@/shared/lib/model";
+import {formatTime} from "@/shared/lib";
 import {useGameSettings} from "@/entities/gameSettings";
 
 interface GameWinModalProps {

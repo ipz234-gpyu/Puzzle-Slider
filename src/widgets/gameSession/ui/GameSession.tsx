@@ -1,6 +1,5 @@
 import {useState, useEffect} from "react";
 import styles from "./styles.module.css";
-import {useGameSession} from "../hooks/useGameSession";
 
 import type {LevelConfig} from "@/entities/levelCard";
 import {ModalFormButton} from "@/features/modalForm";
@@ -8,6 +7,7 @@ import {PuzzleSettingForm, type FormData} from "@/features/puzzleSettingForm";
 import {GameWinModal} from "@/features/gameWinModal";
 import {PuzzleBoard} from "@/features/puzzleBoard";
 import {useGameProgress} from "@/features/levelProgress";
+import {useGameSession} from "@/features/gameSession";
 
 interface GameSessionProps {
     level: LevelConfig;

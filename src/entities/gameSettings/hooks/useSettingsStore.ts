@@ -6,15 +6,20 @@ interface SettingsState {
     settings: GameSettings;
     isLoading: boolean;
     error: string | null;
+    cachedProgressByPlayer: Record<string, string>;
 
     initSettings: () => Promise<void>;
     updateSettings: (newSettings: GameSettings) => Promise<void>;
+    setCachedProgress: (playerName: string, progress: string) => void;
+    getCachedProgress: (playerName: string) => string | undefined;
+    clearCachedProgress: (playerName: string) => void;
 }
 
-export const useSettingsStore = create<SettingsState>((set) => ({
+export const useSettingsStore = create<SettingsState>()((set, get) => ({
     settings: DEFAULT_SETTINGS,
     isLoading: false,
     error: null,
+    cachedProgressByPlayer: {},
 
     initSettings: async () => {
         set({isLoading: true, error: null});
@@ -40,5 +45,25 @@ export const useSettingsStore = create<SettingsState>((set) => ({
             console.error("Sync error:", e);
             set({error: "Failed to save settings"});
         }
+    },
+
+    setCachedProgress: (playerName: string, progress: string) => {
+        set((state) => ({
+            cachedProgressByPlayer: {
+                ...state.cachedProgressByPlayer,
+                [playerName]: progress,
+            },
+        }));
+    },
+
+    getCachedProgress: (playerName: string): string | undefined => get().cachedProgressByPlayer[playerName],
+
+    clearCachedProgress: (playerName: string) => {
+        set((state) => {
+            const nextCache = {...state.cachedProgressByPlayer};
+            delete nextCache[playerName];
+
+            return {cachedProgressByPlayer: nextCache};
+        });
     },
 }));

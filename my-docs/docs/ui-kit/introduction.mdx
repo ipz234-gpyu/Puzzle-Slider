@@ -1,0 +1,29 @@
+---
+sidebar_position: 1
+title: Documentation Component Playground
+description: Living UI Kit documentation rendered from the real shared source components.
+---
+
+# Documentation Component Playground
+
+The UI Kit is a living documentation area for Puzzle Slider. These pages import and run the literal source components defined in `src/shared/ui/`, so the examples stay aligned with the application code instead of drifting into mocked snippets.
+
+```tsx
+import { Button } from '../../../src/shared/ui/button/ui/Button';
+import { Toggle } from '../../../src/shared/ui/toggle/ui/Toggle';
+import { Flex } from '../../../src/shared/ui/flex/ui/Flex';
+```
+
+## What to Expect
+
+- Each page documents one shared atomic component or utility.
+- The examples are executable MDX, not static screenshots.
+- The previews exercise the same source code used by the app shell and features.
+
+:::tip
+These shared primitives are SSR-safe because they do not depend on browser-only globals. If you add a preview that needs `window`, `document`, or layout measurement, wrap only that preview in Docusaurus `BrowserOnly` rather than disabling SSR for the page.
+:::
+
+## Navigation
+
+Start with the component-specific pages below to inspect behavior, API shape, and layout usage in context.

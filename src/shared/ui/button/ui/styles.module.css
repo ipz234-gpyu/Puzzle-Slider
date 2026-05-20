@@ -10,7 +10,6 @@
     transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), background-color var(--transition-smooth);
     position: relative;
     overflow: hidden;
-    user-select: none;
     outline: none;
 
     &:active:not(:disabled) {

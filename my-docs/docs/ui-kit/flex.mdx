@@ -1,0 +1,87 @@
+---
+sidebar_position: 4
+title: Layout Flexbox Container Utility
+description: Live documentation for the shared Flex utility component.
+---
+
+import { Flex } from '../../../src/shared/ui/flex/ui/Flex';
+
+export const FlexPreview = () => {
+  const boxStyle = {
+    minWidth: '5.5rem',
+    minHeight: '3.25rem',
+    borderRadius: '0.85rem',
+    border: '1px solid var(--color-border-subtle)',
+    background: 'var(--color-surface-base)',
+    color: 'var(--color-text-main)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight: 700,
+  };
+
+  return (
+    <div className="uiKitPreview" style={{ display: 'grid', gap: '1.25rem' }}>
+      <section>
+        <h3>Row with gap and wrap</h3>
+        <Flex gap={12} align="center" justify="between" wrap="wrap" style={{ padding: '1rem', border: '1px dashed var(--color-border-subtle)', borderRadius: '1rem', background: 'rgba(255, 255, 255, 0.02)' }}>
+          <div style={boxStyle}>Alpha</div>
+          <div style={boxStyle}>Beta</div>
+          <div style={boxStyle}>Gamma</div>
+        </Flex>
+      </section>
+
+      <section>
+        <h3>Column stack</h3>
+        <Flex direction="column" gap="0.75rem" style={{ padding: '1rem', border: '1px dashed var(--color-border-subtle)', borderRadius: '1rem', background: 'rgba(255, 255, 255, 0.02)' }}>
+          <div style={boxStyle}>Header</div>
+          <div style={boxStyle}>Body</div>
+          <div style={boxStyle}>Footer</div>
+        </Flex>
+      </section>
+
+      <section>
+        <h3>Wrapped tiles</h3>
+        <Flex gap={10} wrap="wrap" style={{ padding: '1rem', border: '1px dashed var(--color-border-subtle)', borderRadius: '1rem', background: 'rgba(255, 255, 255, 0.02)' }}>
+          <div style={boxStyle}>One</div>
+          <div style={boxStyle}>Two</div>
+          <div style={boxStyle}>Three</div>
+          <div style={boxStyle}>Four</div>
+        </Flex>
+      </section>
+    </div>
+  );
+};
+
+# Layout Flexbox Container Utility
+
+Flex is the shared layout primitive for composing rows, columns, spacing, and wrap behavior without reaching for ad hoc CSS in every feature.
+
+## Import
+
+```tsx
+import { Flex } from '../../../src/shared/ui/flex/ui/Flex';
+```
+
+## Live Example
+
+<FlexPreview />
+
+:::info
+The `gap` prop accepts either a number in pixels or a string value. That makes it convenient for both design-token spacing and one-off layout tweaks.
+:::
+
+## Layout Parameters
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `direction` | `row \| column` | `row` | Controls the main axis direction. |
+| `align` | `start \| center \| end \| stretch` | `stretch` | Controls cross-axis alignment. |
+| `justify` | `start \| center \| end \| between \| around \| evenly` | `start` | Controls main-axis distribution. |
+| `gap` | `number \| string` | unset | Adds spacing between children. |
+| `wrap` | `nowrap \| wrap \| wrap-reverse` | `nowrap` | Controls whether items can wrap onto additional lines. |
+
+## Notes
+
+- Use `Flex` when you need a predictable inline layout that still accepts semantic HTML via the `as` prop.
+- Prefer design-token spacing values or small pixel values for consistent component rhythm.

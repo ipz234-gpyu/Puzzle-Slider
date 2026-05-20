@@ -1,6 +1,8 @@
 {
   "name": "puzzleslider",
-  "private": true,
+  "license": "Apache-2.0",
+  "author": "Petro Hryb",
+  "private": false,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
@@ -10,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "license-checker": "^25.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.68.0",
